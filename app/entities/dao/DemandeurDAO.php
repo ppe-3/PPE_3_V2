@@ -1,17 +1,13 @@
 <?php
 
-/**
-* 
-*/
-include_once "inc/model/Bordereau.php";
-class Note_de_fraisDAO  
-{
+//include_once '../entities/Demandeur.php';
+class DemandeurDAO {
 
-private static $connexion; 
-
+  private static $connexion; // Objet de connexion
 
   
-private static function get_connexion() {
+
+  private static function get_connexion() {
     if (self::$connexion === null) {
       // Récupération des paramètres de configuration BD
       $user = 'root';
@@ -29,37 +25,50 @@ private static function get_connexion() {
     }
     return self::$connexion;
   }
+
   
 
 
-
-    function find($id_Demandeur) {
-    $sql = "select * from notefrais ";
+  function find($mail_demandeur,$motdepasse_demandeur) {
+    $sql = "select * from demandeur where mail_demandeur=:mail_demandeur and motdepasse_demandeur=:motdepasse_demandeur";
     try {
       $sth = self::get_connexion()->prepare($sql);
-      $sth->execute(array(":id_Demandeur" => $id_Demandeur));
+      $sth->execute(array(":mail_demandeur" => $mail_demandeur ,":motdepasse_demandeur"=>$motdepasse_demandeur));
+      $row = $sth->fetch(PDO::FETCH_ASSOC);
+     
+    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+
+    $Demandeur = new Demandeur($row);
+
+
+    return $Demandeur; // Retourne l'objet métier
+  }
+
+  
+  function findAll() {
+    $sql = "select * from demandeur";
+    try {
+      $sth = self::get_connexion()->prepare($sql);
+      $sth->execute();
       $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
-       }
+    }
     $tableau = array();
+   
     foreach ($rows as $row) {
-      $tableau[] = new Note_de_frais($row);
+      $demandeur = new demandeur($row);
+      
+      $tableau[] = $demandeur;
     }
     return $tableau; // Retourne un tableau d'objets
   }
-
-
-  function hydrater(array $tableau) 
-  {
-    foreach ($tableau as $cle => $valeur) {
-      $methode = 'set_' . $cle;
-      if (method_exists($this, $methode)) {
-        $this->$methode($valeur);
-      }
-    }
-  }
-
+  
 
 
 }
+
+
+

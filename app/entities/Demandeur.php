@@ -4,15 +4,15 @@
 class Demandeur {
 
   private $id_demandeur = null;     
-  private $nom_demandeur;           
-  private $prenom_demandeur;     
-  private $rue_demandeur;      
-  private $cp_demandeur;    
-  private $ville_demandeur;            
-  private $mdp_demandeur;            
-  private $mail_demandeur;       
-  private $datenaissance_demandeur;       
-  private $sexe_demandeur;     
+  private $nom_demandeur = null;           
+  private $prenom_demandeur = null;     
+  private $rue_demandeur = null;      
+  private $cp_demandeur = null;    
+  private $ville_demandeur = null;            
+  private $mdp_demandeur = null;            
+  private $mail_demandeur = null;       
+  private $datenaissance_demandeur = null;       
+  private $sexe_demandeur = null;     
 
   
 

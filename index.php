@@ -1,5 +1,5 @@
 <?php
-include_once 'inc/menu.php';
+include_once 'app/templates/menu.php';
 ?>
 
 <header class="masthead">

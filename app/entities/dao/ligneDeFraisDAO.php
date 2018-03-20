@@ -2,8 +2,8 @@
 
 
 
-include_once "inc/model/Demandeur.php";
-class DemandeurDAO {
+include_once "../ligneDeFrais.php";
+class LignefraisDAO {
 
   private static $connexion; // Objet de connexion
 
@@ -31,30 +31,24 @@ class DemandeurDAO {
   
 
 
-  function find($mail_demandeur,$motdepasse_demandeur) {
-    $sql = "select * from demandeur where mail_demandeur=:mail_demandeur and motdepasse_demandeur=:motdepasse_demandeur";
+  function find($id_lignefrais) {
+    $sql = "select * from lignefrais where id_lf=:id_lignefrais";
     try {
       $sth = self::get_connexion()->prepare($sql);
-      $sth->execute(array(":mail_demandeur" => $mail_demandeur ,":motdepasse_demandeur"=>$motdepasse_demandeur));
+      $sth->execute(array(":id_lignefrais" => $id_lignefrais));
       $row = $sth->fetch(PDO::FETCH_ASSOC);
-     
     } catch (PDOException $e) {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
     }
-     if ( $row==false)
-      {
-        $Demandeur= null;
-      }
-      else{
-    $Demandeur = new Demandeur($row);
-         }
+    $lignefrais = new Lf($row);
+
   
-    return $Demandeur; // Retourne l'objet métier
+    return $lignefrais; 
   }
 
   
   function findAll() {
-    $sql = "select * from demandeur";
+    $sql = "select * from lignefrais";
     try {
       $sth = self::get_connexion()->prepare($sql);
       $sth->execute();
@@ -65,16 +59,37 @@ class DemandeurDAO {
     $tableau = array();
    
     foreach ($rows as $row) {
-      $demandeur = new demandeur($row);
+      $lignefrais = new Lf($row);
       
-      $tableau[] = $demandeur;
+      $tableau[] = $lignefrais;
     }
     return $tableau; // Retourne un tableau d'objets
   }
   
+ function findby($id_Demandeur,$annee) {
+    $sql = "select * from lignefrais where id_Demandeur=:id_Demandeur and annees=:annee ";
+    try {
+      $sth = self::get_connexion()->prepare($sql);
+      $sth->execute(array(":id_Demandeur" => $id_Demandeur,":annee" => $annee));
+      $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+       }
+    $tableau = array();
+    foreach ($rows as $row) {
+      $tableau[] = new Lf($row);
+    }
+    return $tableau; // Retourne un tableau d'objets
+  }
+
+  function delete($id) {
+    $sql = "DELETE FROM lignefrais WHERE id_lf =:id ";
+  
+      $sth = self::get_connexion()->prepare($sql);
+      $sth->execute(array(":id" => $id));
+      $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+   
+  }
 
 
 }
-
-
-
