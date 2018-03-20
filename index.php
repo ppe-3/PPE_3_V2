@@ -1,5 +1,6 @@
 <?php
-include_once 'app/templates/menu.php';
+include_once 'src/init.php';
+include_once BASEURL.'app/templates/menu.php';
 ?>
 
 <header class="masthead">

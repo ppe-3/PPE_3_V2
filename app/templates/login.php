@@ -1,6 +1,7 @@
 <?php
-include_once 'menu.php';
-include_once '../controllers/loginController.php';
+include_once '../../src/init.php';
+include_once ROOT.'/app/templates/menu.php';
+include_once ROOT.'/app/controllers/loginController.php';
 ?>
 
 <header class="masthead">

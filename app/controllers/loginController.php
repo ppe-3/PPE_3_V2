@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once '../../inc/hashage.php';
 include_once '../entities/dao/DemandeurDAO.php';
 include_once '../entities/Demandeur.php';
