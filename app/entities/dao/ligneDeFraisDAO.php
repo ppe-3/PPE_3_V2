@@ -1,9 +1,6 @@
 <?php
-
-
-
-include_once "../ligneDeFrais.php";
-class LignefraisDAO {
+include_once '../../src/init.php';
+include_once ROOT.'/app/entities/ligneDeFrais.php';class LignefraisDAO {
 
   private static $connexion; // Objet de connexion
 
@@ -90,6 +87,33 @@ class LignefraisDAO {
       $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
    
   }
+
+  function insert_ligne_de_frais(array $lignedefrais_object) {
+  $sql = $con->prepare('INSERT INTO lignefrais(datetrajet_lf, id_motif, trajet_lf, km_lf, couttrajet_lf, coutpeage_lf, coutrepas_lf, couthebergement_lf, id_demandeur, annees) VALUE(:datetrajet, :motif, :trajet , :km, :ct, :cp, :cr, :ch, :id, :annees )');
+    try {
+      $sth = self::get_connexion()->prepare($sql);
+      var_dump($sth);
+      $sth->execute(array(
+            ':datetrajet'            => $datetrajet,
+            ':motif'                 => $motif,
+            ':trajet'                => $trajet,
+            ':km'                    => $km,
+            ':ct'                    => $ct,
+            ':cp'                    => $cp,
+            ':cr'                    => $cr,
+            ':ch'                    => $ch,
+            ':id'                    => $id,
+            ':annees'                => $curYear 
+        ));    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+    $nb = $sth->rowcount();
+    return $nb;  // Retourne le nombre d'insertion
+  }
+
+
+        
+
 
 
 }

@@ -1,9 +1,6 @@
 <?php
-
-/**
-* 
-*/
-include_once "../Bordereau.php";
+include_once '../../src/init.php';
+include_once ROOT.'/app/entities/Bordereau.php';
 class Note_de_fraisDAO  
 {
 
