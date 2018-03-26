@@ -26,5 +26,5 @@ define('APPLINAME', 'Fredi MVC');
 // Gestion de la session
 //require_once SRC . DS . 'models' . DS . 'Utilisateur.php';  // Obligatoire pour tous les objets susceptibles d'être sérialisés dans la session
 session_start();
-session_name('BASEL');
+@session_name('BASEL');
 
