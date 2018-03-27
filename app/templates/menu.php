@@ -41,14 +41,13 @@
 <?php if(!isset($_SESSION['id'])): ?>
     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="app/templates/login.php">Connexion</a></li>
     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="app/templates/register.php">Inscription</a></li>
+    
 <?php endif; ?>
 
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="listeBordereaux.php">Note de frais</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#portfolio">Mon compte</a>
-          </li>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="app/templates/settings.php">Mon compte</a></li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="<?= (BASEURL.'app/controllers/logout.php'); ?>">Déconnexion</a>
           </li>

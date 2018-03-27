@@ -6,8 +6,6 @@ class DemandeurDAO {
 
   private static $connexion; // Objet de connexion
 
-  
-
   private static function get_connexion() {
     if (self::$connexion === null) {
       // Récupération des paramètres de configuration BD
@@ -26,9 +24,6 @@ class DemandeurDAO {
     }
     return self::$connexion;
   }
-
-  
-
 
   function find($mail_demandeur,$motdepasse_demandeur) {
     $sql = "select * from demandeur where mail_demandeur=:mail_demandeur and motdepasse_demandeur=:motdepasse_demandeur";
@@ -72,7 +67,27 @@ class DemandeurDAO {
     return current($demandeur); // Retourne l'objet métier
   }
 
-  
+    function findByPassword($motdepasse_demandeur) {
+    $sql = "select * from demandeur where motdepasse_demandeur = :motdepasse_demandeur";
+    try {
+      $sth = self::get_connexion()->prepare($sql);
+      $sth->execute(array(":motdepasse_demandeur" => hashage($motdepasse_demandeur)));
+      $row = $sth->fetch(PDO::FETCH_ASSOC);
+
+    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    } 
+    if(!$row)
+    {
+      $demandeur = new Demandeur();
+    }
+    else
+    {
+      $demandeur = new Demandeur($row);  
+    }
+    return $demandeur; // Retourne l'objet métier
+  }
+
   function findAll() {
     $sql = "select * from demandeur";
     try {
@@ -91,8 +106,6 @@ class DemandeurDAO {
     }
     return $tableau; // Retourne un tableau d'objets
   }
-
-
 /* 
 
 * Fonction insert de demandeur
@@ -111,6 +124,13 @@ class DemandeurDAO {
     return $nb;  // Retourne le nombre d'insertion
   }
 
+  function updateDemandeur($mdp_demandeur, $id_demandeur) {
+    $sql = "update demandeur set motdepasse_demandeur=:mdp_demandeur where id_demandeur=:id_demandeur";
+    $sth = self::get_connexion()->prepare($sql);
+    $sth->execute(array(":motdepasse_demandeur" => hashage($mdp_demandeur)));
+    $row = $sth->fetch(PDO::FETCH_ASSOC);
+    return $nb;  // Retourne le nombre de mise à jour
+  }
 }
 
 
