@@ -124,12 +124,10 @@ class DemandeurDAO {
     return $nb;  // Retourne le nombre d'insertion
   }
 
-  function updateDemandeur($mdp_demandeur, $id_demandeur) {
-    $sql = "update demandeur set motdepasse_demandeur=:mdp_demandeur where id_demandeur=:id_demandeur";
+  function updateDemandeur($motdepasse_demandeur, $id_demandeur) {
+    $sql = "update demandeur set motdepasse_demandeur=:motdepasse_demandeur where id_demandeur=:id_demandeur";
     $sth = self::get_connexion()->prepare($sql);
-    $sth->execute(array(":motdepasse_demandeur" => hashage($mdp_demandeur)));
-    $row = $sth->fetch(PDO::FETCH_ASSOC);
-    return $nb;  // Retourne le nombre de mise à jour
+    $sth->execute(array(":motdepasse_demandeur" => hashage($motdepasse_demandeur),":id_demandeur" => $id_demandeur));
   }
 }
 
