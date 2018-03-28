@@ -9,7 +9,7 @@ class Demandeur {
   private $rue_demandeur = null;      
   private $cp_demandeur = null;    
   private $ville_demandeur = null;            
-  private $motdepasse_demandeur = null;            
+  private $mdp_demandeur = null;            
   private $mail_demandeur = null;       
   private $datenaissance_demandeur = null;       
   private $sexe_demandeur = null;     
@@ -51,7 +51,7 @@ class Demandeur {
 
   
   function get_mdp_demandeur() {
-    return $this->motdepasse_demandeur;
+    return $this->mdp_demandeur;
   }
 
   function get_mail_demandeur() {
