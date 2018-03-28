@@ -2,7 +2,8 @@
 
 $id =	isset($_SESSION['id']) ? $_SESSION['id'] : '';
 
-echo'test';
-$daoDemandeur = new Bordereau();
-$daoDemandeur->find($id);
-var_dump($daoDemandeur);
+
+$daoAdherents = new AdherentDAO();
+$daoAdherents->findByDemandeur($id);
+var_dump($daoAdherents);
+

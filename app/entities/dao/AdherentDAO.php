@@ -50,6 +50,22 @@ class AdherentDAO {
     return $adherent; // Retourne l'objet métier
   }
 
+    function findByDemandeur($id_demandeur) {
+    $sql = "select * from adherent where id_demandeur=:id_demandeur and mineur = 1";
+    try {
+      $sth = self::get_connexion()->prepare($sql);
+      $sth->execute(array(":id_demandeur" => $id_demandeur));
+      $row = $sth->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+    $adherent = new adherent($row);
+    // Récupère les données du Ferry
+  
+    return $adherent; // Retourne l'objet métier
+  }
+
+
   
   function findAll() {
     $sql = "select * from adherent";
