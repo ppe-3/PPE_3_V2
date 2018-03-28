@@ -18,7 +18,7 @@ define('ROOT', dirname(dirname(__FILE__)));  // Racine du site en absolu
 define('DS', DIRECTORY_SEPARATOR);   // Séparateur de dossier (dépend de l'OS)
 define('SRC', ROOT . DS . 'src');  // Dossier src en absolu
 // Définition des URLs
-define('BASEURL', dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))));
+define('BASEURL', dirname(dirname($_SERVER['SCRIPT_NAME'])));
 
 // Paramètres de l'application
 define('APPLINAME', 'Fredi MVC');

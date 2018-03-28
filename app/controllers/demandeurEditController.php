@@ -23,5 +23,7 @@ if($submit)
 		$demandeur = $daoDemandeur->findByPassword($old_password);
 		$demandeur->set_mdp_demandeur($new_password);
 		$daoDemandeur->updateDemandeur($demandeur->get_mdp_demandeur(), $demandeur->get_id_demandeur());
+        header('Location: ../../index.php');
+
 	}
 }

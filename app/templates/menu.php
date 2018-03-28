@@ -31,26 +31,25 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
 <?php if(isset($_SESSION['id'])): ?>
-        <a class="navbar-brand js-scroll-trigger">Bienvenue <?= @$_SESSION['nom_demandeur']; ?></a>
+        <a class="navbar-brand js-scroll-trigger">Bienvenue <?= $_SESSION['nom_demandeur']; ?></a>
 <?php endif; ?>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/index.php">Accueil</a></li>
 <?php if(!isset($_SESSION['id'])): ?>
     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="app/templates/login.php">Connexion</a></li>
     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="app/templates/register.php">Inscription</a></li>
-    
 <?php endif; ?>
-
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="listeBordereaux.php">Note de frais</a>
           </li>
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="app/templates/settings.php">Mon compte</a></li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="<?= (BASEURL.'app/controllers/logout.php'); ?>">Déconnexion</a>
+<?php if(isset($_SESSION['id'])): ?>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="listeBordereaux.php">Note de frais</a>
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="utilisateurEdit.php">Mon compte</a></li>   
+          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="logout.php">Déconnexion</a>
           </li>
+<?php endif; ?>
           </ul>
         </div>
       </div>
