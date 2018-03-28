@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mar. 13 mars 2018 à 13:19
+-- Généré le :  mer. 28 mars 2018 à 11:30
 -- Version du serveur :  5.7.17
 -- Version de PHP :  5.6.30
 
@@ -35,8 +35,17 @@ CREATE TABLE `adherent` (
   `id_demandeur` int(11) DEFAULT NULL,
   `nom_ad` varchar(30) DEFAULT NULL,
   `prenom_ad` varchar(30) DEFAULT NULL,
-  `date_naissance_ad` date DEFAULT NULL
+  `date_naissance_ad` date DEFAULT NULL,
+  `mineur` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `adherent`
+--
+
+INSERT INTO `adherent` (`numlicense_adherent`, `id_demandeur`, `nom_ad`, `prenom_ad`, `date_naissance_ad`, `mineur`) VALUES
+('123', 10, 'ad-test', 'adtest', '2018-03-12', 1),
+('1234', 10, 'testad2', 'testad2', '2018-03-31', 1);
 
 -- --------------------------------------------------------
 
@@ -53,6 +62,29 @@ CREATE TABLE `avancer` (
   `id_demandeur_DEMANDEUR` int(11) NOT NULL,
   `id_lf` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `bordereau`
+--
+
+CREATE TABLE `bordereau` (
+  `id_notefrais` int(11) NOT NULL,
+  `annee` year(4) NOT NULL,
+  `id_demandeur` int(11) NOT NULL,
+  `id_adherent` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `bordereau`
+--
+
+INSERT INTO `bordereau` (`id_notefrais`, `annee`, `id_demandeur`, `id_adherent`) VALUES
+(1, 2015, 0, 0),
+(2, 2016, 10, 123),
+(3, 2017, 9, 1234),
+(4, 2018, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -111,7 +143,9 @@ INSERT INTO `demandeur` (`id_demandeur`, `nom_demandeur`, `prenom_demandeur`, `r
 (5, 'lalatest2', 'clementest2', 'rue test2', 45587, 'montauban2', 'a6b7c51189bdb4c7952c0377d0ab3228c90e2731c91d2bda879d771f648f7750', 'lala@lalatest', '2017-11-15', 'H', ''),
 (6, 'tersigny', 'anthony', '6 lotissement Miquelouddd', 9500, 'Rieuros', 'c9b85cb410d5367445bd9d766934c459646962dc9c127586c19b02e6aa473c86', 'anthony.tersigny@limayrac.fr', '2017-12-22', 'H', 'O'),
 (7, 'tersigny', 'anthony', '6 lotissement Miquelouddd', 9500, 'Rieuros', '0a5c7028491723742af22e429b2a49c4c63e3fb303ac91eb5f00ca73e8d49b8d', 'anthony.tersigny@limayrac.fr', '2017-12-22', 'H', 'N'),
-(8, 'lala', 'clement', 'lala', 82000, 'montauban', 'e5a6d282f3f97d31fed7c319c9508320df97f5e43e826324bf9a9fd086ffbaf0', 'lala@lala', '2018-03-15', 'H', '');
+(8, 'lala', 'clement', 'lala', 82000, 'montauban', 'e5a6d282f3f97d31fed7c319c9508320df97f5e43e826324bf9a9fd086ffbaf0', 'lala@lala', '2018-03-15', 'H', ''),
+(9, 'lala2', 'clement2', 'lala rue', 82000, 'Montauban', '4907a81d832f0f850c69f1b142bbfa1cf1bb1e2d92e507ea73587aebda698630', 'lala@lala2', '2018-03-14', 'H', 'O'),
+(10, 'lala3', 'lala3', 'rue', 82000, 'toulouse', '069f12f858be5e55a721e52c25381cb98b1e7c2a0953d22e296e15481335dffa', 'lala@lala3', '2018-03-14', 'H', 'O');
 
 -- --------------------------------------------------------
 
@@ -160,10 +194,10 @@ CREATE TABLE `lignefrais` (
 
 INSERT INTO `lignefrais` (`id_lf`, `datetrajet_lf`, `trajet_lf`, `km_lf`, `couttrajet_lf`, `coutpeage_lf`, `coutrepas_lf`, `couthebergement_lf`, `annee_indemnite`, `id_motif`, `id_demandeur`, `annees`) VALUES
 (2, '2016-10-12', '', 42, '0', '56', '75', '485', 2016, 2, 0, ''),
-(3, '2017-12-06', 'Lyon-Bordeaux', 12, '55', '56', '369', '26', NULL, 1, 0, ''),
+(3, '2017-12-06', 'Lyon-Bordeaux', 12, '55', '56', '369', '26', NULL, 1, 10, '2016'),
 (4, '2018-03-08', 'lala', 150, '10', '10', '10', '10', NULL, 2, 0, ''),
-(5, '2018-01-04', 'toulouse-montauban', 10, '10', '10', '10', '10', NULL, 1, 8, '2018'),
-(8, '2018-03-15', 'AA', 2, '2', '2', '2', '2', NULL, 2, 8, '2018');
+(5, '2018-01-04', 'toulouse-montauban', 10, '10', '10', '10', '10', NULL, 1, 9, '2018'),
+(8, '2018-03-15', 'AA', 2, '2', '2', '2', '2', NULL, 2, 9, '2017');
 
 -- --------------------------------------------------------
 
@@ -206,27 +240,6 @@ INSERT INTO `motif` (`id_motif`, `libelle_motif`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `notefrais`
---
-
-CREATE TABLE `notefrais` (
-  `id_notefrais` int(11) NOT NULL,
-  `annee` year(4) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `notefrais`
---
-
-INSERT INTO `notefrais` (`id_notefrais`, `annee`) VALUES
-(1, 2015),
-(2, 2016),
-(3, 2017),
-(4, 2018);
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `representant`
 --
 
@@ -256,6 +269,12 @@ ALTER TABLE `avancer`
   ADD KEY `FK_AVANCER_numlicense_adherent` (`numlicense_adherent`),
   ADD KEY `FK_AVANCER_id_demandeur_DEMANDEUR` (`id_demandeur_DEMANDEUR`),
   ADD KEY `FK_AVANCER_id_lf` (`id_lf`);
+
+--
+-- Index pour la table `bordereau`
+--
+ALTER TABLE `bordereau`
+  ADD PRIMARY KEY (`id_notefrais`);
 
 --
 -- Index pour la table `club`
@@ -298,12 +317,6 @@ ALTER TABLE `motif`
   ADD PRIMARY KEY (`id_motif`);
 
 --
--- Index pour la table `notefrais`
---
-ALTER TABLE `notefrais`
-  ADD PRIMARY KEY (`id_notefrais`);
-
---
 -- Index pour la table `representant`
 --
 ALTER TABLE `representant`
@@ -316,6 +329,11 @@ ALTER TABLE `representant`
 --
 
 --
+-- AUTO_INCREMENT pour la table `bordereau`
+--
+ALTER TABLE `bordereau`
+  MODIFY `id_notefrais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT pour la table `club`
 --
 ALTER TABLE `club`
@@ -324,7 +342,7 @@ ALTER TABLE `club`
 -- AUTO_INCREMENT pour la table `demandeur`
 --
 ALTER TABLE `demandeur`
-  MODIFY `id_demandeur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_demandeur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `lignefrais`
 --
@@ -340,11 +358,6 @@ ALTER TABLE `ligue_affiliation`
 --
 ALTER TABLE `motif`
   MODIFY `id_motif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT pour la table `notefrais`
---
-ALTER TABLE `notefrais`
-  MODIFY `id_notefrais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `representant`
 --
