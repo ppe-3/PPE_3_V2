@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Adherent extends Demandeur {
+class Adherent  {
 {
 	private $numlicense_adherent;
   private $nom_ad;
@@ -24,24 +24,24 @@ class Adherent extends Demandeur {
 
 
   // Getter
-  	function get_numlicense_adherent() 
+  	function get_id() 
   	{
    		return $this->numlicense_adherent;
   	}
 
-    function get_nom_ad() 
+    function get_nom_adherent() 
     {
-      return $this->nom_ad;
+      return $this->nom_adherent;
     }
 
-     function get_prenom_ad() 
+     function get_prenom_adherent() 
     {
-      return $this->prenom_ad;
+      return $this->prenom_adherent;
     }
 
-     function get_date_naissance_ad() 
+     function get_date_naissance_adherent() 
     {
-      return $this->date_naissance_ad;
+      return $this->date_naissance_adherent;
     }
 
      function get_mineur() 
@@ -51,24 +51,24 @@ class Adherent extends Demandeur {
 
 
  	// Setter
-  	function set_numlicense_adherent($numlicense_adherent) 
+  	function set_id($numlicense_adherent) 
     {
   	  $this->numlicense_adherent = $numlicense_adherent;
   	}
 
-    function set_nom_ad($nom_ad) 
+    function set_nom_adherent($nom_adherent) 
     {
-      $this->nom_ad = $nom_ad;
+      $this->nom_adherent = $nom_adherent;
     }
 
-    function set_prenom_ad($prenom_ad) 
+    function set_prenom_adherent($prenom_adherent) 
     {
-      $this->prenom_ad = $prenom_ad;
+      $this->prenom_adherent = $prenom_adherent;
     }
 
-    function set_date_naissance_ad($date_naissance_ad) 
+    function set_date_naissance_adherent($date_naissance_adherent) 
     {
-      $this->date_naissance_ad = $date_naissance_ad;
+      $this->date_naissance_adherent = $date_naissance_adherent;
     }
 
 
