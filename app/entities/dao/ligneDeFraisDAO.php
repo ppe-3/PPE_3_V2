@@ -63,12 +63,13 @@ include_once ROOT.'/app/entities/ligneDeFrais.php';class LignefraisDAO {
     return $tableau; // Retourne un tableau d'objets
   }
   
- function findby($id_Demandeur,$annee) {
-    $sql = "select * from lignefrais where id_Demandeur=:id_Demandeur and annees=:annee ";
+ function findby($id_demandeur,$annee) {
+    $sql = "select * from lignefrais where id_demandeur=:id_demandeur and annees=:annee";
     try {
       $sth = self::get_connexion()->prepare($sql);
-      $sth->execute(array(":id_Demandeur" => $id_Demandeur,":annee" => $annee));
+      $sth->execute(array(":id_demandeur" => $id_demandeur,":annee" => $annee));
       $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+
     } catch (PDOException $e) {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
        }
@@ -110,10 +111,18 @@ include_once ROOT.'/app/entities/ligneDeFrais.php';class LignefraisDAO {
     $nb = $sth->rowcount();
     return $nb;  // Retourne le nombre d'insertion
   }
-
-
-        
-
+ 
+ function findtarif($annee_indemnite){
+$sql = "select tarifkilometrique_indemnite from indemnite where annee_indemnite = :annee_indemnite";
+    try {
+      $sth = self::get_connexion()->prepare($sql);
+      $sth->execute(array(":annee_indemnite" => $annee_indemnite));
+      $row = $sth->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+        return $row['tarifkilometrique_indemnite'];
+ }
 
 
 }

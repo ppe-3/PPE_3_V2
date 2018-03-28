@@ -44,7 +44,7 @@
 <?php endif; ?>
 
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="listeBordereaux.php">Note de frais</a>
+            <a class="nav-link js-scroll-trigger" href="<?= (BASEURL.'app/templates/listeBordereaux.php'); ?>">listeBordereaux</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#portfolio">Mon compte</a>

@@ -31,7 +31,7 @@ private static function get_connexion() {
 
 
     function find($id_Demandeur) {
-    $sql = "select * from notefrais ";
+    $sql = "select * from notefrais where id_demandeur = :id_Demandeur ";
     try {
       $sth = self::get_connexion()->prepare($sql);
       $sth->execute(array(":id_Demandeur" => $id_Demandeur));

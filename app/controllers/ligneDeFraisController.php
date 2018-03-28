@@ -2,39 +2,45 @@
 include_once '../../src/init.php';
 include ROOT.'/inc/connexion_bd.inc.php';
 include_once ROOT.'/app/templates/menu.php';
+include_once '../entities/dao/ligneDeFraisDAO.php';
 
-$id=isset($_SESSION['id']) ? $_SESSION['id'] : '';
-$nom=isset($_SESSION['nom']) ? $_SESSION['nom'] : '';
-$prenom=isset($_SESSION['prenom']) ? $_SESSION['prenom'] : '';
+$id =               isset($_SESSION['id']) ? $_SESSION['id'] : '';
+$nom =              isset($_SESSION['nom']) ? $_SESSION['nom'] : '';
+$prenom =           isset($_SESSION['prenom']) ? $_SESSION['prenom'] : '';
 
+$annee =            isset($_GET['annee']) ? $_GET['annee'] : '';
+$id_demandeur =     isset($_GET['user']) ? $_GET['user'] : '';
 
+$ligneDeFraisDAO= new LignefraisDAO;
+$tarif = $ligneDeFraisDAO->findtarif($annee);
 
-$datetrajet = isset($_POST['datetrajet']) ? $_POST['datetrajet'] : '';
-$motif = isset($_POST['motif']) ? $_POST['motif'] : '';
-$trajet = isset($_POST['trajet']) ? $_POST['trajet'] : '';
-$km = isset($_POST['km']) ? $_POST['km'] : '';
-$ct = isset($_POST['ct']) ? $_POST['ct'] : ''; //ct : Cout trajet
-$cp = isset($_POST['cp']) ? $_POST['cp'] : ''; //cp : Cout péage
-$cr = isset($_POST['cr']) ? $_POST['cr'] : ''; //cr : Cout repas
-$ch = isset($_POST['ch']) ? $_POST['ch'] : ''; //ch : Cout hébergement
-$submit = isset($_POST['submit']) ? $_POST['submit'] : '';
- 
-// Modifier avec les champs postés
-if($submit){
-  $array = array("nom_demandeur" => $nom,
-                "prenom_demandeur" => $prenom,
-                "rue_demandeur" => $rue,
-                "cp_demandeur" => $cp,
-                "ville_demandeur" => $ville,
-                "motdepasse_demandeur" => hashage($passe),
-                "mail_demandeur" => $mail,
-                "datenaissance_demandeur" => $datenaissance,
-                "sexe_demandeur" => $sexe,
-                "repre_demandeur" => $rep);
-$curYear = date('Y');   
-$ligneDeFraisDao = new ligneDeFraisDao();
-$ligneDeFraisDao->insert_ligne_de_frais($array);
-echo "Insertion effectuée";
+$rows = $ligneDeFraisDAO->findby($id_demandeur,$annee); 
+
+echo ('<table>
+        <tr>
+            <th>Date</th>
+            <th>Trajet</th>
+            <th>distance</th>
+            <th>Cout des peages</th>
+            <th>Cout du repas</th>
+            <th>Cout du hebergement</th>
+            <th>Total</th>
+        </tr>');
+foreach ($rows as $row) 
+{
+    $total = $tarif * $row->get_km_lf() + $row->get_coutpeage_lf() + $row->get_coutrepas_lf() + 
+             $row->get_couthebergement_lf();
+
+    echo('<tr>
+            <td>'. $row->get_datetrajet_lf() .'</td>
+            <td>'.$row->get_trajet_lf(). '</td>
+            <td>' . $row->get_km_lf() .'</td>
+            <td>'.$row->get_coutpeage_lf().'</td>
+            <td>'.$row->get_coutrepas_lf().'</td>
+            <td>'.$row->get_couthebergement_lf().'</td>
+            <td>'.$total.'</td>
+        </tr>');
+    echo('<br/>'); 
+echo '</table>';
 }
 
-?>

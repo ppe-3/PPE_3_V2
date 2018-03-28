@@ -29,7 +29,7 @@ class Note_de_frais  //attribut de la classe note de frais
     
     function get_id_demandeur() 
     {
-      return $this->id_note_de_frais;
+      return $this->id_demandeur;
     }
      function get_annee() 
     {
