@@ -5,8 +5,12 @@
 */
 class Adherent extends Demandeur {
 {
-	private $id_adherent;
-  private $id_club;
+	private $numlicense_adherent;
+  private $nom_ad;
+  private $prenom_ad;
+  private $date_naissance_ad;
+  private $mineur;
+
 
 
 
@@ -20,27 +24,60 @@ class Adherent extends Demandeur {
 
 
   // Getter
-  	function get_id_adherent() 
+  	function get_numlicense_adherent() 
   	{
-   		return $this->id_adherent;
+   		return $this->numlicense_adherent;
   	}
 
-    function get_id_club() 
+    function get_nom_ad() 
     {
-      return $this->id_club;
+      return $this->nom_ad;
+    }
+
+     function get_prenom_ad() 
+    {
+      return $this->prenom_ad;
+    }
+
+     function get_date_naissance_ad() 
+    {
+      return $this->date_naissance_ad;
+    }
+
+     function get_mineur() 
+    {
+      return $this->mineur;
     }
 
 
  	// Setter
-  	function set_id_adherent($id_adherent) 
+  	function set_numlicense_adherent($numlicense_adherent) 
     {
-  	  $this->id_adherent = $id_adherent;
+  	  $this->numlicense_adherent = $numlicense_adherent;
   	}
 
-    function set_id_club($id_club) 
+    function set_nom_ad($nom_ad) 
     {
-      $this->id_club = $id_club;
+      $this->nom_ad = $nom_ad;
     }
+
+    function set_prenom_ad($prenom_ad) 
+    {
+      $this->prenom_ad = $prenom_ad;
+    }
+
+    function set_date_naissance_ad($date_naissance_ad) 
+    {
+      $this->date_naissance_ad = $date_naissance_ad;
+    }
+
+
+    function set_mineur($mineur) 
+    {
+      $this->mineur = $mineur;
+    }
+
+
 
 
 
