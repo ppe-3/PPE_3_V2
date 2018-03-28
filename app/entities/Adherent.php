@@ -1,11 +1,8 @@
 <?php
 
-/**
-* 
-*/
 class Adherent  {
-{
 	private $numlicense_adherent;
+  private $id_demandeur;
   private $nom_ad;
   private $prenom_ad;
   private $date_naissance_ad;
@@ -28,20 +25,24 @@ class Adherent  {
   	{
    		return $this->numlicense_adherent;
   	}
-
-    function get_nom_adherent() 
+    function get_id_demandeur() 
     {
-      return $this->nom_adherent;
+      return $this->id_demandeur;
     }
 
-     function get_prenom_adherent() 
+    function get_nom_ad() 
     {
-      return $this->prenom_adherent;
+      return $this->nom_ad;
     }
 
-     function get_date_naissance_adherent() 
+     function get_prenom_ad() 
     {
-      return $this->date_naissance_adherent;
+      return $this->prenom_ad;
+    }
+
+     function get_date_naissance_ad() 
+    {
+      return $this->date_naissance_ad;
     }
 
      function get_mineur() 
@@ -51,35 +52,35 @@ class Adherent  {
 
 
  	// Setter
-  	function set_id($numlicense_adherent) 
+  	function set_id($numlicense_ad) 
     {
-  	  $this->numlicense_adherent = $numlicense_adherent;
+  	  $this->numlicense_ad = $numlicense_ad;
   	}
 
-    function set_nom_adherent($nom_adherent) 
+    function set_id_demandeur($id_demandeur) 
     {
-      $this->nom_adherent = $nom_adherent;
+      $this->id_demandeur = $id_demandeur;
     }
 
-    function set_prenom_adherent($prenom_adherent) 
+    function set_nom_ad($nom_ad) 
     {
-      $this->prenom_adherent = $prenom_adherent;
+      $this->nom_ad = $nom_ad;
     }
 
-    function set_date_naissance_adherent($date_naissance_adherent) 
+    function set_prenom_ad($prenom_ad) 
     {
-      $this->date_naissance_adherent = $date_naissance_adherent;
+      $this->prenom_ad = $prenom_ad;
     }
 
+    function set_date_naissance_ad($date_naissance_ad) 
+    {
+      $this->date_naissance_ad = $date_naissance_ad;
+    }
 
     function set_mineur($mineur) 
     {
       $this->mineur = $mineur;
     }
-
-
-
-
 
   function hydrater(array $tableau) 
   {
@@ -90,40 +91,5 @@ class Adherent  {
       }
     }
   }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

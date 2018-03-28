@@ -1,8 +1,7 @@
 <?php
+include_once '../../src/init.php';
+include_once ROOT.'/app/entities/Adherent.php';
 
-
-
-include_once "../Adherent.php";
 class AdherentDAO {
 
   private static $connexion; // Objet de connexion
@@ -44,7 +43,7 @@ class AdherentDAO {
     } catch (PDOException $e) {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
     }
-    $adherent = new adherent($row);
+    $adherent = new Adherent($row);
     // Récupère les données du Ferry
   
     return $adherent; // Retourne l'objet métier
@@ -55,13 +54,14 @@ class AdherentDAO {
     try {
       $sth = self::get_connexion()->prepare($sql);
       $sth->execute(array(":id_demandeur" => $id_demandeur));
-      $row = $sth->fetch(PDO::FETCH_ASSOC);
+      $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+      foreach ($rows as $row) {
+        $adherent = new Adherent($row);
+      }
+
     } catch (PDOException $e) {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
     }
-    $adherent = new adherent($row);
-    // Récupère les données du Ferry
-  
     return $adherent; // Retourne l'objet métier
   }
 
@@ -79,7 +79,7 @@ class AdherentDAO {
     $tableau = array();
    
     foreach ($rows as $row) {
-      $adherent = new adherent($row);
+      $adherent = new Adherent($row);
       
       $tableau[] = $adherent;
     }
