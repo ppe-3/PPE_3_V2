@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mer. 28 mars 2018 à 11:30
--- Version du serveur :  5.7.17
--- Version de PHP :  5.6.30
+-- Généré le :  mar. 03 avr. 2018 à 15:07
+-- Version du serveur :  10.1.31-MariaDB
+-- Version de PHP :  7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `fredi`
 --
-CREATE DATABASE IF NOT EXISTS `fredi` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS `fredi` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `fredi`;
 
 -- --------------------------------------------------------
@@ -128,7 +128,7 @@ CREATE TABLE `demandeur` (
   `mail_demandeur` varchar(50) DEFAULT NULL,
   `datenaissance_demandeur` date DEFAULT NULL,
   `sexe_demandeur` varchar(25) DEFAULT NULL,
-  `repre_demandeur` varchar(25) NOT NULL
+  `repre_demandeur` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -136,16 +136,17 @@ CREATE TABLE `demandeur` (
 --
 
 INSERT INTO `demandeur` (`id_demandeur`, `nom_demandeur`, `prenom_demandeur`, `rue_demandeur`, `cp_demandeur`, `ville_demandeur`, `motdepasse_demandeur`, `mail_demandeur`, `datenaissance_demandeur`, `sexe_demandeur`, `repre_demandeur`) VALUES
-(1, 'lala', 'clement', 'chemin de la route', 82000, 'toulouse', 'mdp1', 'user1@user1', '1998-10-17', 'homme', ''),
-(2, 'tersigny', 'Anthony', 'rue du chemin', 82000, 'Lyon', 'mdp2', 'user2@user2', '1999-01-01', 'homme', ''),
-(3, 'lala', 'clement', '154 chemin lacoste', 82000, 'montauban', '7aa8e89b78457f437b85967911bd940a1b759bd9649bb40b361666ee4ccfb346', 'lol@lol', '1994-11-02', 'H', ''),
-(4, 'lalatest', 'clementest', 'rue test', 16465, 'montauban', '7aa8e89b78457f437b85967911bd940a1b759bd9649bb40b361666ee4ccfb346', 'lala@lalatest', '2017-11-15', 'H', ''),
-(5, 'lalatest2', 'clementest2', 'rue test2', 45587, 'montauban2', 'a6b7c51189bdb4c7952c0377d0ab3228c90e2731c91d2bda879d771f648f7750', 'lala@lalatest', '2017-11-15', 'H', ''),
-(6, 'tersigny', 'anthony', '6 lotissement Miquelouddd', 9500, 'Rieuros', 'c9b85cb410d5367445bd9d766934c459646962dc9c127586c19b02e6aa473c86', 'anthony.tersigny@limayrac.fr', '2017-12-22', 'H', 'O'),
-(7, 'tersigny', 'anthony', '6 lotissement Miquelouddd', 9500, 'Rieuros', '0a5c7028491723742af22e429b2a49c4c63e3fb303ac91eb5f00ca73e8d49b8d', 'anthony.tersigny@limayrac.fr', '2017-12-22', 'H', 'N'),
-(8, 'lala', 'clement', 'lala', 82000, 'montauban', 'e5a6d282f3f97d31fed7c319c9508320df97f5e43e826324bf9a9fd086ffbaf0', 'lala@lala', '2018-03-15', 'H', ''),
-(9, 'lala2', 'clement2', 'lala rue', 82000, 'Montauban', '4907a81d832f0f850c69f1b142bbfa1cf1bb1e2d92e507ea73587aebda698630', 'lala@lala2', '2018-03-14', 'H', 'O'),
-(10, 'lala3', 'lala3', 'rue', 82000, 'toulouse', '069f12f858be5e55a721e52c25381cb98b1e7c2a0953d22e296e15481335dffa', 'lala@lala3', '2018-03-14', 'H', 'O');
+(1, 'lala', 'clement', 'chemin de la route', 82000, 'toulouse', 'mdp1', 'user1@user1', '1998-10-17', 'homme', 0),
+(2, 'tersigny', 'Anthony', 'rue du chemin', 82000, 'Lyon', 'mdp2', 'user2@user2', '1999-01-01', 'homme', 0),
+(3, 'lala', 'clement', '154 chemin lacoste', 82000, 'montauban', '7aa8e89b78457f437b85967911bd940a1b759bd9649bb40b361666ee4ccfb346', 'lol@lol', '1994-11-02', 'H', 0),
+(4, 'lalatest', 'clementest', 'rue test', 16465, 'montauban', '7aa8e89b78457f437b85967911bd940a1b759bd9649bb40b361666ee4ccfb346', 'lala@lalatest', '2017-11-15', 'H', 0),
+(5, 'lalatest2', 'clementest2', 'rue test2', 45587, 'montauban2', 'a6b7c51189bdb4c7952c0377d0ab3228c90e2731c91d2bda879d771f648f7750', 'lala@lalatest', '2017-11-15', 'H', 0),
+(6, 'tersigny', 'anthony', '6 lotissement Miquelouddd', 9500, 'Rieuros', 'c9b85cb410d5367445bd9d766934c459646962dc9c127586c19b02e6aa473c86', 'anthony.tersigny@limayrac.fr', '2017-12-22', 'H', 0),
+(7, 'tersigny', 'anthony', '6 lotissement Miquelouddd', 9500, 'Rieuros', '0a5c7028491723742af22e429b2a49c4c63e3fb303ac91eb5f00ca73e8d49b8d', 'anthony.tersigny@limayrac.fr', '2017-12-22', 'H', 0),
+(8, 'lala', 'clement', 'lala', 82000, 'montauban', 'e5a6d282f3f97d31fed7c319c9508320df97f5e43e826324bf9a9fd086ffbaf0', 'lala@lala', '2018-03-15', 'H', 0),
+(9, 'lala2', 'clement2', 'lala rue', 82000, 'Montauban', '4907a81d832f0f850c69f1b142bbfa1cf1bb1e2d92e507ea73587aebda698630', 'lala@lala2', '2018-03-14', 'H', 0),
+(10, 'lala3', 'lala3', 'rue', 82000, 'toulouse', '069f12f858be5e55a721e52c25381cb98b1e7c2a0953d22e296e15481335dffa', 'lala@lala3', '2018-03-14', 'H', 0),
+(11, 'Anton', 'fsdfsd', 'fsdf', 31120, 'fsfsdfsdfsdfs', '63c6ff0987402bab2edef792955fc4f2d15feeaa34226c0c4365fdccfcff62c0', 'aa.a@outlook.fr', '2018-04-04', 'H', 0);
 
 -- --------------------------------------------------------
 
@@ -333,36 +334,43 @@ ALTER TABLE `representant`
 --
 ALTER TABLE `bordereau`
   MODIFY `id_notefrais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT pour la table `club`
 --
 ALTER TABLE `club`
   MODIFY `id_club` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT pour la table `demandeur`
 --
 ALTER TABLE `demandeur`
-  MODIFY `id_demandeur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_demandeur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT pour la table `lignefrais`
 --
 ALTER TABLE `lignefrais`
   MODIFY `id_lf` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT pour la table `ligue_affiliation`
 --
 ALTER TABLE `ligue_affiliation`
   MODIFY `id_ligue` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT pour la table `motif`
 --
 ALTER TABLE `motif`
   MODIFY `id_motif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT pour la table `representant`
 --
 ALTER TABLE `representant`
   MODIFY `id_representant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- Contraintes pour les tables déchargées
 --
