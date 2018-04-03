@@ -18,8 +18,8 @@ include_once ROOT.'/app/controllers/registerController.php';
           
           <u>Prénom</u> <br /><input type="text" required name="prenom"  /><br />
           
-          <u>Représentant légal</u> ?   <br />    <input type="radio" name="rep" value="O" checked/> Oui<br />
-                                                  <input type="radio" name="rep" value="N" > Non<br />
+          <u>Représentant légal</u> ?   <br />    <input type="radio" name="repre_demandeur" value="1" checked/> Oui<br />
+                                                  <input type="radio" name="repre_demandeur" value="0" > Non<br />
           
           <u>Rue</u> <br /><input type="text" required name="rue"  /><br />
          

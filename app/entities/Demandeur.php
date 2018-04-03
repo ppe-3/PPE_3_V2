@@ -12,7 +12,8 @@ class Demandeur {
   private $mdp_demandeur = null;            
   private $mail_demandeur = null;       
   private $datenaissance_demandeur = null;       
-  private $sexe_demandeur = null;     
+  private $sexe_demandeur = null;
+  private $repre_demandeur = null;     
 
   
 
@@ -68,6 +69,10 @@ class Demandeur {
     return $this->sexe_demandeur;
   }
 
+  function get_repre_demandeur() {
+    return $this->repre_demandeur;
+  }
+
 
   function set_id_demandeur($id_demandeur) {
     $this->id_demandeur = $id_demandeur;
@@ -108,6 +113,10 @@ class Demandeur {
 
   function set_sexe_demandeur($sexe_demandeur) {
     $this->sexe_demandeur = $sexe_demandeur;
+  }
+
+  function set_repre_demandeur($repre_demandeur) {
+    $this->repre_demandeur = $repre_demandeur;
   }
 
 function hydrater(array $tableau) {
