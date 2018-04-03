@@ -1,7 +1,7 @@
 <?php
-include_once '../../inc/hashage.php';
-include_once '../entities/dao/DemandeurDAO.php';
-include_once '../entities/Demandeur.php';
+include_once ROOT.'/inc/hashage.php';
+include_once ROOT.'/app/entities/dao/DemandeurDAO.php';
+include_once ROOT.'/app/entities/Demandeur.php';
 
 $submit = isset($_POST['submit']) ? $_POST['submit'] : '';
 $mail = isset($_POST['mail']) ? $_POST['mail'] : '';
@@ -29,7 +29,7 @@ if($submit)
             $_SESSION['datenaissance_demandeur'] = $demandeur->get_datenaissance_demandeur();
             $_SESSION['sexe_demandeur'] = $demandeur->get_sexe_demandeur();
 
-            header('Location: ../../index.php');
+            header('Location: index.php');
       }
 }
 

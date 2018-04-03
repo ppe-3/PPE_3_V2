@@ -1,7 +1,8 @@
 <?php
-include_once '../../src/init.php';
-include_once ROOT.'/app/controllers/bordereauController.php';
+include_once 'src/init.php';
 include_once ROOT.'/app/templates/menu.php';
+include_once ROOT.'/app/controllers/bordereauController.php';
+
 ?>
     <header class="masthead">
       <div class="header-content">

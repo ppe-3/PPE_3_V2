@@ -1,8 +1,8 @@
 <?php
-include_once '../../src/init.php';
+include_once 'src/init.php';
 include ROOT.'/inc/connexion_bd.inc.php';
 include_once ROOT.'/app/templates/menu.php';
-include_once '../entities/dao/ligneDeFraisDAO.php';
+include_once ROOT.'/app/entities/dao/ligneDeFraisDAO.php';
 
 $id =               isset($_SESSION['id']) ? $_SESSION['id'] : '';
 $nom =              isset($_SESSION['nom']) ? $_SESSION['nom'] : '';

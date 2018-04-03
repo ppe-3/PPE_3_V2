@@ -1,7 +1,7 @@
 <?php
-include_once '../../inc/hashage.php';
-include_once '../entities/dao/DemandeurDAO.php';
-include_once '../entities/Demandeur.php';
+include_once ROOT.'/inc/hashage.php';
+include_once ROOT.'/app/entities/dao/DemandeurDAO.php';
+include_once ROOT.'/app/entities/Demandeur.php';
 
 $nom 			= isset($_POST['nom']) ? $_POST['nom'] : '';
 $prenom 		= isset($_POST['prenom']) ? $_POST['prenom'] : '';

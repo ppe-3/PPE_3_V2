@@ -1,5 +1,5 @@
 <?php
-include_once '../../src/init.php';
+include_once '/src/init.php';
 include_once ROOT.'/app/entities/Adherent.php';
 
 class AdherentDAO {

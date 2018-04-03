@@ -39,18 +39,18 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
 <?php if(!isset($_SESSION['id'])): ?>
-    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="app/templates/login.php">Connexion</a></li>
-    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="app/templates/register.php">Inscription</a></li>
+    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="login.php">Connexion</a></li>
+    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="register.php">Inscription</a></li>
 <?php endif; ?>
 <?php if(isset($_SESSION['id'])): ?>
     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="listeBordereaux.php">Note de frais</a></li>
-    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="app/templates/settings.php">Mon compte</a></li>
-    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?= (BASEURL.'app/controllers/logout.php'); ?>">Déconnexion</a>
+    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="demandeuredit.php">Mon compte</a></li>
+    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="logout.php'); ?>">Déconnexion</a>
     </li>
 <?php endif; ?>
 <?php
 if(!isset($_SESSION['repre_demandeur']) != 0) :?>
-    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="app/templates/ajoutAdherent.php">Espace adherents</a></li>
+    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="adherents.php">Espace adherents</a></li>
 <?php endif; ?>
 
           </ul>

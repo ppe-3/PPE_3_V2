@@ -1,6 +1,8 @@
 <?php
-include_once '../../src/init.php';
-include_once ROOT.'/app/entities/ligneDeFrais.php';class LignefraisDAO {
+include_once 'src/init.php';
+include_once ROOT.'/app/entities/ligneDeFrais.php';
+
+class LignefraisDAO {
 
   private static $connexion; // Objet de connexion
 

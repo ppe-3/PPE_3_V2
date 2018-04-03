@@ -1,7 +1,6 @@
 <?php
+include_once ROOT.'/inc/hashage.php';
 
-//include_once '../entities/Demandeur.php';
-include_once '../../inc/hashage.php';
 class DemandeurDAO {
 
   private static $connexion; // Objet de connexion

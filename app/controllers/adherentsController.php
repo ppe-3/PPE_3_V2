@@ -1,5 +1,5 @@
 <?php
-include_once '../entities/dao/AdherentDAO.php';
+include_once ROOT.'/app/entities/dao/AdherentDAO.php';
 $id =	isset($_SESSION['id']) ? $_SESSION['id'] : '';
 
 

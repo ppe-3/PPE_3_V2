@@ -1,5 +1,6 @@
 <?php
-include_once '../../src/init.php';
+include_once 'src/init.php';
+include_once ROOT.'/app/templates/menu.php';
 include_once ROOT.'/app/controllers/registerController.php';
 ?>
 <!DOCTYPE html>

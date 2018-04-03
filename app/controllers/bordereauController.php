@@ -1,6 +1,6 @@
 <?php
-include_once '../entities/dao/BordereauDAO.php';
-include_once '../entities/dao/ligneDeFraisDAO.php';
+include_once ROOT.'/app/entities/dao/BordereauDAO.php';
+include_once ROOT.'/app/entities/dao/ligneDeFraisDAO.php';
 
 
 if(@$_SESSION['id'] == null)
