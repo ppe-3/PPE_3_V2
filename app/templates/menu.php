@@ -45,11 +45,10 @@
 <?php if(isset($_SESSION['id'])): ?>
     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="listeBordereaux.php">Note de frais</a></li>
     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="demandeuredit.php">Mon compte</a></li>
-    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="logout.php'); ?>">Déconnexion</a>
+    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="logout.php">Déconnexion</a>
     </li>
 <?php endif; ?>
-<?php
-if(!isset($_SESSION['repre_demandeur']) != 0) :?>
+<?php if(isset($_SESSION['id'])) :?>
     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="adherents.php">Espace adherents</a></li>
 <?php endif; ?>
 
