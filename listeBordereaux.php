@@ -18,7 +18,7 @@ include_once ROOT.'/app/templates/menu.php';
                   foreach ($rows as $row) { ?>
 
 				<?php  
-				echo('<a href="ligneDeFrais.php?annee='. $row->get_annee() .'&user='.$row->get_id_demandeur(). '">bordereaux</a>' . $row->get_id_note_de_frais() .'  '.$row->get_annee() . ''); 
+				echo(' <a href="ligneDeFrais.php?annee='. $row->get_annee() .'&user='.$row->get_id_demandeur(). '">bordereaux</a>' . $row->get_id_note_de_frais() .'  '.$row->get_annee() . '</br>'); 
 							if ($row->get_annee() == date("Y")){
 											$etat=1;
 					                  			 }
@@ -32,7 +32,7 @@ include_once ROOT.'/app/templates/menu.php';
 			
 
 				<?php if($etat == 0){   		
-					echo('<a href="ajoutBordereau.php?id='.$_SESSION['id'].'">ajouter</a>');
+					echo('</br> <p>Clicker sur  <a href="ajoutBordereau.php?id='.$_SESSION['id'].'">ajouter</a> pour créer un bordereau pour cette année');
                       } ?>
 
 
