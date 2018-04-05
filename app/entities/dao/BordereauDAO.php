@@ -48,6 +48,19 @@ private static function get_connexion() {
   }
 
 
+
+ function insert_bordereau($id_demandeur) {
+    $sql = "INSERT INTO bordereau(annee, id_demandeur) VALUES (:annee, :id_demandeur)";
+    try {
+      $sth = self::get_connexion()->prepare($sql);
+      var_dump($sth);
+      $sth->execute(array(":id_demandeur" => $id_demandeur ,":annee" => date("Y") ));
+    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+  }
+
+
   function hydrater(array $tableau) 
   {
     foreach ($tableau as $cle => $valeur) {

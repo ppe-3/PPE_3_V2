@@ -11,6 +11,6 @@ $id = $_GET['id'];
  $Note_de_fraisDAO= new Note_de_fraisDAO;
  $Note_de_fraisDAO->insert_bordereau($id);
 
- echo('lololololol');
+
 
  header('Location: listeBordereaux.php ');
