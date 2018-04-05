@@ -6,6 +6,11 @@ include_once ROOT.'/app/entities/dao/ligneDeFraisDAO.php';
 
 $message="";
 
+ 
+
+
+
+
 if(@$_SESSION['id'] == null)
 {
 	$message="vous n'avez pas de borderaux ";
