@@ -12,3 +12,8 @@ $cr 			= isset($_POST['cr']) ? $_POST['cr'] : '';
 $ch             = isset($_POST['ch']) ? $_POST['ch'] : '';
 $motif          = isset($_POST['motif']) ? $_POST['motif'] : '';
 $submit 		= isset($_POST['submit']) ? $_POST['submit'] : '';
+
+
+if($submit){
+	
+}
