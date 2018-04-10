@@ -87,26 +87,23 @@ class LignefraisDAO {
   
       $sth = self::get_connexion()->prepare($sql);
       $sth->execute(array(":id" => $id));
-      $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
    
   }
 
-  function insert_ligne_de_frais(array $lignedefrais_object) {
-  $sql = $con->prepare('INSERT INTO lignefrais(datetrajet_lf, id_motif, trajet_lf, km_lf, couttrajet_lf, coutpeage_lf, coutrepas_lf, couthebergement_lf, id_demandeur, annees) VALUE(:datetrajet, :motif, :trajet , :km, :ct, :cp, :cr, :ch, :id, :annees )');
+  function insert_ligne_de_frais($datetrajet_lf,$trajet_lf,$km_lf,$coutpeage_lf,$coutrepas_lf,$couthebergement_lf,$id_demandeur) {
+  $sql = "INSERT INTO lignefrais(datetrajet_lf,  trajet_lf, km_lf, coutpeage_lf, coutrepas_lf, couthebergement_lf, id_demandeur, annees) VALUE(:datetrajet, :trajet , :km, :cp, :cr, :ch, :id, :annees )";
     try {
       $sth = self::get_connexion()->prepare($sql);
       var_dump($sth);
       $sth->execute(array(
-            ':datetrajet'            => $datetrajet,
-            ':motif'                 => $motif,
-            ':trajet'                => $trajet,
-            ':km'                    => $km,
-            ':ct'                    => $ct,
-            ':cp'                    => $cp,
-            ':cr'                    => $cr,
-            ':ch'                    => $ch,
-            ':id'                    => $id,
-            ':annees'                => $curYear 
+            ':datetrajet'            => $datetrajet_lf,
+            ':trajet'                => $trajet_lf,
+            ':km'                    => $km_lf,
+            ':cp'                    => $coutpeage_lf,
+            ':cr'                    => $coutrepas_lf,
+            ':ch'                    => $couthebergement_lf,
+            ':id'                    => $id_demandeur,
+            ':annees'                => date("Y") 
         ));    } catch (PDOException $e) {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
     }
@@ -125,6 +122,33 @@ $sql = "select tarifkilometrique_indemnite from indemnite where annee_indemnite 
     }
         return $row['tarifkilometrique_indemnite'];
  }
+
+
+
+
+function update_ligne_de_frais($idLigne,$datetrajet_lf,$trajet_lf,$km_lf,$coutpeage_lf,$coutrepas_lf,$couthebergement_lf,$id_demandeur) {
+  $sql = "UPDATE lignefrais SET datetrajet_lf=:datetrajet,  trajet_lf = :trajet, km_lf = :km, coutpeage_lf = :cp, coutrepas_lf = :cr , couthebergement_lf = :ch, id_demandeur = :id, annees = :annees WHERE id_lf=:id_lignefrais ";
+    try {
+      $sth = self::get_connexion()->prepare($sql);
+      var_dump($sth);
+      $sth->execute(array(
+            ':id_lignefrais'         => $idLigne,
+            ':datetrajet'            => $datetrajet_lf,
+            ':trajet'                => $trajet_lf,
+            ':km'                    => $km_lf,
+            ':cp'                    => $coutpeage_lf,
+            ':cr'                    => $coutrepas_lf,
+            ':ch'                    => $couthebergement_lf,
+            ':id'                    => $id_demandeur,
+            ':annees'                => date("Y") 
+        ));    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+    $nb = $sth->rowcount();
+    return $nb;  // Retourne le nombre d'insertion
+  }
+
+
 
 
 }

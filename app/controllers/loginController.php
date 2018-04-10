@@ -15,6 +15,9 @@ if($submit)
       if($demandeur->get_id_demandeur() < 1)
       {
             echo('Mot de passe incorect');
+           $message = "user non authentifié";
+           $token = null;
+         
       }
       else
       {
@@ -29,8 +32,19 @@ if($submit)
             $_SESSION['datenaissance_demandeur'] = $demandeur->get_datenaissance_demandeur();
             $_SESSION['sexe_demandeur'] = $demandeur->get_sexe_demandeur();
 
-            header('Location: index.php');
+            $message = "user authentifié";
+
+            // Crée un token aléatoire (<PHP7)
+             $token = bin2hex(openssl_random_pseudo_bytes(15));
+            // Ajoute le token au fichier des tokens
+            add_token($token);
+           
+            
       }
+
+       $json = build_json($message, $token, NULL);
+            send_json($json);
+       header('Location: index.php');
 }
 
 ?>

@@ -21,25 +21,29 @@ include_once ROOT.'/app/templates/menu.php';
 		            <th>Total</th>
 		        </tr>
 
-		        <?php 
-			        		   $total = $tarif * $row->get_km_lf() 
+		        <?php  foreach ($rows as $row) { ?>
+								<?php  
+ 							   $total = $tarif * $row->get_km_lf() 
 			                 + $row->get_coutpeage_lf() 
 			                 + $row->get_coutrepas_lf() 
-			                 + $row->get_couthebergement_lf(); ?>
+			                 + $row->get_couthebergement_lf(); 
 
-
-			                  <?php  foreach ($rows as $row) { ?>
-								<?php  echo('<tr>
+								echo('<tr>
 			            <td>'. $row->get_datetrajet_lf() .'</td>
 			            <td>'.$row->get_trajet_lf(). '</td>
 			            <td>' . $row->get_km_lf() .'</td>
 			            <td>'.$row->get_coutpeage_lf().'</td>
 			            <td>'.$row->get_coutrepas_lf().'</td>
 			            <td>'.$row->get_couthebergement_lf().'</td>
-			            <td>'.$total.'</td>
-			            <td><a href="modifierControlleurs.php?id='.$row->get_id_lf().'">Modifier</a></td>
-			            <td><a href="suprimerControlleurs.php?id='.$row->get_id_lf().'">Supprimer</a></td>
-			              </tr>');
+			            <td>'.$total.'</td>');
+                             
+                        if($annee == date("Y")){
+                        echo('
+			            <td><a href="modifier.php?id='.$row->get_id_lf().'">Modifier</a></td>
+			            <td><a href="suprimer.php?id='.$row->get_id_lf().'">Supprimer</a></td>
+
+
+			              </tr>');}
 		               }
 		               }
 		               else{
