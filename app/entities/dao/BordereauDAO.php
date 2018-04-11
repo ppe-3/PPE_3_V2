@@ -49,6 +49,26 @@ private static function get_connexion() {
 
 
 
+ function findByCurrentYear($id_demandeur) {
+    $sql = "select * from lignefrais where id_demandeur=:id_demandeur and annees=:annee";
+    try {
+      $sth = self::get_connexion()->prepare($sql);
+      $sth->execute(array(":id_demandeur" => $id_demandeur,":annee" => date("Y")));
+      $row = $sth->fetch(PDO::FETCH_ASSOC);
+
+    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+       }
+  
+      $Bordereau = new Lf($row);
+    
+    return $Bordereau; // Retourne un objet bordereau
+  }
+
+
+
+
+
  function insert_bordereau($id_demandeur) {
     $sql = "INSERT INTO bordereau(annee, id_demandeur) VALUES (:annee, :id_demandeur)";
     try {

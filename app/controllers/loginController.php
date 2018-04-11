@@ -21,7 +21,6 @@ if($submit)
       }
       else
       {
-            session_start();
             $_SESSION['id'] = $demandeur->get_id_demandeur();
             $_SESSION['nom_demandeur'] = $demandeur->get_nom_demandeur();
             $_SESSION['prenom_demandeur'] = $demandeur->get_prenom_demandeur();
@@ -34,16 +33,11 @@ if($submit)
 
             $message = "user authentifié";
 
-            // Crée un token aléatoire (<PHP7)
-             $token = bin2hex(openssl_random_pseudo_bytes(15));
-            // Ajoute le token au fichier des tokens
-            add_token($token);
            
             
       }
 
-       $json = build_json($message, $token, NULL);
-            send_json($json);
+ 
        header('Location: index.php');
 }
 

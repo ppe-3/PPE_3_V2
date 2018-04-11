@@ -28,3 +28,5 @@ define('APPLINAME', 'Fredi MVC');
 session_start();
 @session_name('BASEL');
 
+// Emplacement du fichier des tokens
+define("TOKEN_FILENAME",ROOT."/files/tokens.txt");

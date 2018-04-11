@@ -1,5 +1,7 @@
 <?php
+
 include_once ROOT.'/inc/hashage.php';
+include_once ROOT.'/app/entities/Demandeur.php';
 
 class DemandeurDAO {
 
