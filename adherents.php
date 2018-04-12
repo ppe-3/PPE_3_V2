@@ -24,7 +24,6 @@ echo ('<table border="2">
             <th>Nom</th>
             <th>Prenom</th>
             <th>Date de naissance</th>
-            <th>Mineur</th>
             <th>Modifier</th>
             <th>Supprimer</th>
         </tr>');
@@ -36,10 +35,9 @@ foreach ($Adherents as $adherent)
             <td>'.$adherent->get_nom_ad().'</td>
             <td>'.$adherent->get_prenom_ad(). '</td>
             <td>' .$adherent->get_date_naissance_ad().'</td>   
-            <td>'.$adherent->get_mineur().'</td>
 
-            <td><a href="modifierAdherent.php?id='.$adherent->get_numlicense_adherent().'"><img src="/ico/pencil.png" alt="img"></a></td>
-			<td><a href="supprimerAdherent.php?id='.$adherent->get_numlicense_adherent().'"><img src="/ico/delete.png" alt="img"></a></td>
+            <td><a href="modifierAdherent.php?id='.$adherent->get_numlicense_adherent().'"><img src="/PPE_3_V2/ico/pencil.png" alt="img"></a></td>
+			<td><a href="supprimerAdherent.php?id='.$adherent->get_numlicense_adherent().'"><img src="/PPE_3_V2/ico/delete.png" alt="img"></a></td>
 
         </tr>');
 }
@@ -48,7 +46,7 @@ echo '</table>';
 ?>
 		</center>
 
-          <p><a href="ajoutAdherent.php"><img src="/ico/add.png" alt="img">Ajouter un adherent</a></p>
+          <p><a href="ajoutAdherent.php"><img src="/PPE_3_V2/ico/add.png" alt="img">Ajouter un adherent</a></p>
         </div>
 
       </div>

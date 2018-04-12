@@ -39,11 +39,12 @@ include_once ROOT.'/app/templates/menu.php';
                              
                         if($annee == date("Y")){
                         echo('
-			            <td><a href="modifier.php?id='.$row->get_id_lf().'"><img src="/ico/pencil.png" alt="img"> Modifier</a></td>
-			            <td><a href="suprimer.php?id='.$row->get_id_lf().'"><img src="/ico/delete.png" alt="img">Supprimer</a></td>
+			            <td><a href="modifier.php?id='.$row->get_id_lf().'"><img src="/PPE_3_V2/ico/pencil.png" alt="img"> Modifier</a></td>
+			            <td><a href="suprimer.php?id='.$row->get_id_lf().'"><img src="/PPE_3_V2/ico/delete.png" alt="img">Supprimer</a></td>
 
 
 			              </tr>');}
+
 		               }
 		               }
 		               else{
@@ -59,6 +60,10 @@ include_once ROOT.'/app/templates/menu.php';
                        }
          ?>
 				      </table>
+
+                    <?php 
+                      echo('</br> <p><a href="ajout.php?id='.$_SESSION['id'].'&annee='.$annee. '"><img src="/PPE_3_V2/ico/add.png" alt="img">Ajouter une ligne de frais</a>'); 
+                    ?>
 	
         </div>
       </div>

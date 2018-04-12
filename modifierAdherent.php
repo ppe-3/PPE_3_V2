@@ -18,13 +18,13 @@ $id=$_GET["id"];
        
        <form method="post" action="modifierAdherent.php?id=<?php echo $id ?>">
 
-         <input type="hidden" name="numlicense_adherent" value="<?php echo $numlicense_adherent ?>" />
+         <input type="hidden" name="numlicense_adherent" value="<?php echo $id ?>" />
 
-            <p>Numéro de license de l'adhérent<br /><input type="text" required name="numlicense_adherent" value="<?php echo $adherent->get_numlicense_adherent(); ?>"  /><p>
+            <p>Le numéro de license de l'adhérent n'est pas modifiable<p>
             Nom <br /><input type="text" required name="nom_ad" value="<?php echo $adherent->get_nom_ad(); ?>" /><br />
             Prénom <br /><input type="text" required name="prenom_ad" value="<?php echo $adherent->get_prenom_ad(); ?>" /><br />
             Date de naissance <br /><input type="date" required name="date_naissance_ad"  value="<?php echo $adherent->get_date_naissance_ad(); ?>" /><br />
-            Mineur <br /><input type="text" required name="mineur" value="<?php echo $adherent->get_mineur(); ?>"  /><br />
+
             <input type="submit" name="submit" value="Modifier"><br />
             <input type="reset" value="Annuler"><br />
 

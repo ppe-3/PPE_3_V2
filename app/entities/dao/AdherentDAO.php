@@ -138,18 +138,18 @@ class AdherentDAO {
 
 
 
-  function update_adherent($id_demandeur, $nom_ad, $prenom_ad, $date_naissance_ad, $mineur) {
-  $sql = "UPDATE adherent SET id_demandeur = :id_demandeur, nom_ad = :nom_ad, prenom_ad = :prenom_ad, date_naissance_ad = :date_naissance_ad , mineur = :mineur WHERE numlicense_adherent=:numlicense_adherent ";
+  function update_adherent($numlicense_adherent, $nom_ad, $prenom_ad, $date_naissance_ad) {
+  $sql = "UPDATE adherent SET nom_ad = :nom_ad, prenom_ad = :prenom_ad, date_naissance_ad = :date_naissance_ad WHERE numlicense_adherent=:numlicense_adherent ";
     try {
       $sth = self::get_connexion()->prepare($sql);
       var_dump($sth);
       $sth->execute(array(
-        ":id_demandeur"       =>$id_demandeur,      
         ":nom_ad"             =>$nom_ad,
         ":prenom_ad"          =>$prenom_ad,
         ":date_naissance_ad"  =>$date_naissance_ad,
-        "mineur"              =>$mineur
-        ));    } catch (PDOException $e) {
+        ":numlicense_adherent"=>$numlicense_adherent
+        ));    
+    } catch (PDOException $e) {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
     }
     $nb = $sth->rowcount();
