@@ -1,5 +1,5 @@
 <?php
-include_once '/src/init.php';
+include_once 'src/init.php';
 include_once ROOT.'/app/entities/Adherent.php';
 
 class AdherentDAO {
@@ -33,36 +33,63 @@ class AdherentDAO {
 
   
 
-
-  function find($id_Adhenrent) {
-    $sql = "select * from adherent where id_Adhenrent=:id_Adhenrent";
+  function find($numlicense_adherent) {
+    $sql = "select * from adherent where numlicense_adherent=:numlicense_adherent";
     try {
       $sth = self::get_connexion()->prepare($sql);
-      $sth->execute(array(":id_Adhenrent" => $id_Adhenrent));
+      $sth->execute(array(":numlicense_adherent" => $numlicense_adherent));
       $row = $sth->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
     }
-    $adherent = new Adherent($row);
-    // Récupère les données du Ferry
-  
-    return $adherent; // Retourne l'objet métier
+
+        $adherent = new Adherent($row);
+
+        $tableau[] = $adherent;
+
+    return $tableau;    // Retourne un tableau d'objets
   }
 
-    function findByDemandeur($id_demandeur) {
+
+
+  function findModifier($numlicense_adherent) {
+    $sql = "select * from adherent where numlicense_adherent=:numlicense_adherent";
+    try {
+      $sth = self::get_connexion()->prepare($sql);
+      $sth->execute(array(":numlicense_adherent" => $numlicense_adherent));
+      $row = $sth->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+
+        $adherent = new Adherent($row);
+
+
+    return $adherent;    
+  }
+
+
+
+
+
+
+  function findByDemandeur($id_demandeur) {
     $sql = "select * from adherent where id_demandeur=:id_demandeur and mineur = 1";
     try {
       $sth = self::get_connexion()->prepare($sql);
       $sth->execute(array(":id_demandeur" => $id_demandeur));
       $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
-      foreach ($rows as $row) {
-        $adherent = new Adherent($row);
-      }
-
     } catch (PDOException $e) {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
     }
-    return $adherent; // Retourne l'objet métier
+     $adherent = array() ;
+      foreach ($rows as $row) {
+        $adherent = new Adherent($row);
+
+        $tableau[] = $adherent;
+    }
+
+    return $tableau;    // Retourne un tableau d'objets
   }
 
 
@@ -85,7 +112,60 @@ class AdherentDAO {
     }
     return $tableau; // Retourne un tableau d'objets
   }
+
+
+
+
+  function insert_adherent($numlicense_adherent, $id_demandeur, $nom_ad, $prenom_ad, $date_naissance_ad, $mineur) {
+    $sql = 'INSERT INTO adherent(numlicense_adherent, id_demandeur, nom_ad, prenom_ad, date_naissance_ad, mineur) VALUES (:numlicense_adherent, :id_demandeur,:nom_ad, :prenom_ad, :date_naissance_ad, :mineur)';
+    try {
+      $sth = self::get_connexion()->prepare($sql);
+      $sth->execute(array(
+        ":numlicense_adherent"=>$numlicense_adherent,
+        ":id_demandeur"       =>$id_demandeur,      
+        ":nom_ad"             =>$nom_ad,
+        ":prenom_ad"          =>$prenom_ad,
+        ":date_naissance_ad"  =>$date_naissance_ad,
+        "mineur"              =>$mineur
+      ));
+    
+  } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+    
+      return $sth;
+  }
+
+
+
+  function update_adherent($id_demandeur, $nom_ad, $prenom_ad, $date_naissance_ad, $mineur) {
+  $sql = "UPDATE adherent SET id_demandeur = :id_demandeur, nom_ad = :nom_ad, prenom_ad = :prenom_ad, date_naissance_ad = :date_naissance_ad , mineur = :mineur WHERE numlicense_adherent=:numlicense_adherent ";
+    try {
+      $sth = self::get_connexion()->prepare($sql);
+      var_dump($sth);
+      $sth->execute(array(
+        ":id_demandeur"       =>$id_demandeur,      
+        ":nom_ad"             =>$nom_ad,
+        ":prenom_ad"          =>$prenom_ad,
+        ":date_naissance_ad"  =>$date_naissance_ad,
+        "mineur"              =>$mineur
+        ));    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    }
+    $nb = $sth->rowcount();
+    return $nb;  // Retourne le nombre d'insertion
+  }
+
+
+
+
+  function delete_adherent($numlicense_adherent) {
+    $sql = "DELETE FROM adherent WHERE numlicense_adherent =:numlicense_adherent ";
   
+      $sth = self::get_connexion()->prepare($sql);
+      $sth->execute(array(":numlicense_adherent" => $numlicense_adherent));
+   
+  }
 
 
 }

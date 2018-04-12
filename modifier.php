@@ -1,4 +1,5 @@
 <?php
+
 include_once 'src/init.php';
 include_once ROOT.'/app/controllers/ModifierLigneDeFraisControlleur.php';
 include_once ROOT.'/app/templates/menu.php';
@@ -23,8 +24,8 @@ $id=$_GET["id"];
             Km Parcourus <br /><input type="text" required name="km" value="<?php echo $ligne->get_km_lf(); ?>" /><br />
             Cout péage <br /><input type="text" required name="cp" value="<?php echo $ligne->get_coutpeage_lf(); ?>"  /><br />
             Cout repas <br /><input type="text" required name="cr"  value="<?php echo $ligne->get_coutrepas_lf(); ?>" /><br />
-            Cout hébergement <br /><input type="text" required name="ch" value="<?php echo $ligne->get_couthebergement_lf(); ?>"  /><br />
-            <input type="submit" name="submit" value="Ajouter"><br />
+            Cout hébergement <br /><input type="text" required name="ch" value="<?php echo $ligne->get_couthebergement_lf(); ?>"/><br />
+            <input type="submit" name="submit" value="Modifier"><br />
             <input type="reset" value="Annuler"><br />
 
         </form>

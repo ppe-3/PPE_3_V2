@@ -21,7 +21,7 @@ class Adherent  {
 
 
   // Getter
-  	function get_id() 
+  	function get_numlicense_adherent() 
   	{
    		return $this->numlicense_adherent;
   	}
@@ -52,9 +52,9 @@ class Adherent  {
 
 
  	// Setter
-  	function set_id($numlicense_ad) 
+  	function set_numlicense_adherent($numlicense_adherent) 
     {
-  	  $this->numlicense_ad = $numlicense_ad;
+  	  $this->numlicense_adherent = $numlicense_adherent;
   	}
 
     function set_id_demandeur($id_demandeur) 

@@ -6,18 +6,18 @@ include_once ROOT.'/app/templates/menu.php';
  <header class="masthead">
       <div class="header-content">
         <div class="header-content-inner">
-          <h1 id="homeHeading">Liste des ligne de frais </h1>
+          <h1 id="homeHeading">Liste des lignes de frais </h1>
           <hr>
           	 <center> 
       	<?php  if(isset($row)){ ?>
-		                <table>
+		                <table table border="2">
 		        <tr>
 		            <th>Date</th>
 		            <th>Trajet</th>
-		            <th>distance</th>
-		            <th>Cout des peages</th>
-		            <th>Cout du repas</th>
-		            <th>Cout du hebergement</th>
+		            <th>Distance</th>
+		            <th>Coût des peages</th>
+		            <th>Coût du repas</th>
+		            <th>Coût du hebergement</th>
 		            <th>Total</th>
 		        </tr>
 
@@ -39,21 +39,21 @@ include_once ROOT.'/app/templates/menu.php';
                              
                         if($annee == date("Y")){
                         echo('
-			            <td><a href="modifier.php?id='.$row->get_id_lf().'">Modifier</a></td>
-			            <td><a href="suprimer.php?id='.$row->get_id_lf().'">Supprimer</a></td>
+			            <td><a href="modifier.php?id='.$row->get_id_lf().'"><img src="/ico/pencil.png" alt="img"> Modifier</a></td>
+			            <td><a href="suprimer.php?id='.$row->get_id_lf().'"><img src="/ico/delete.png" alt="img">Supprimer</a></td>
 
 
 			              </tr>');}
 		               }
 		               }
 		               else{
-		               	echo('<p>Ce bordereau ne possède actuellement aucun ligne de frais </p> </br>');
+		               	echo('<p>Ce bordereau ne possède actuellement aucune ligne de frais </p> </br>');
 		               }
 		               if($annee == date("Y")){
-		                        echo('</br> <p>Clicker sur  <a href="ajout.php?id='.$_SESSION['id'].'&annee='.$annee. '">ajouter</a> pour insérer une ligne de frais ');
+		                        echo('</br> <p>Cliquez sur  <a href="ajout.php?id='.$_SESSION['id'].'&annee='.$annee. '">ajouter</a> pour insérer une ligne de frais ');
 		                }          			
                        else{
-                        echo('</br> <p> Ce bordereau ne peut plus etre modifier , vous ne pouvez modifier que les ligne de frais du bordereau actuel. </p> ');
+                        echo('</br> <p> Ce bordereau ne peut plus être modifier , vous ne pouvez modifier que les lignes de frais du bordereau actuel. </p> ');
 
 
                        }
