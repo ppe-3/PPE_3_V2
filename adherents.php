@@ -35,9 +35,6 @@ if(isset($Adherents))
 
   foreach ($Adherents as $adherent) 
   {
-
-
-
     echo('<tr>
             <td>'.$adherent->get_numlicense_adherent().'</td>
             <td>'.$adherent->get_nom_ad().'</td>
@@ -49,8 +46,13 @@ if(isset($Adherents))
 
         </tr>');
   }
+
+
   
 }
+else{
+    echo('<p>Aucun adhérent actuellement, veillez en ajouter</p> </br>');
+    }
 
 echo '</table>';
 

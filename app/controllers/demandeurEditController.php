@@ -11,11 +11,19 @@ $new_password_2		= isset($_POST['new_password_2']) ? $_POST['new_password_2'] : 
 
 if($submit)
 {
+	$demandeur = new Demandeur();
+	$demandeurMDP = $demandeur->get_mdp_demandeur();
 
-
+	if($old_password != $demandeurMDP)
+	{
+		echo "Ancien mot de passe incorect, à resaisir";
+		return;
+	}
 	if($new_password != $new_password_2)
 	{
-		echo "Les nouveau mot de passe ne correspond pas avec la vérification";
+		echo "Les nouveaux mots de passe ne correspond pas avec la vérification";
+		return;
+
 	}	
 	else
 	{
@@ -24,6 +32,7 @@ if($submit)
 		$demandeur->set_mdp_demandeur($new_password);
 		$daoDemandeur->updateDemandeur($demandeur->get_mdp_demandeur(), $demandeur->get_id_demandeur());
         header('Location: index.php?user='.$_SESSION['id']);	
-
 	}
+
+
 }

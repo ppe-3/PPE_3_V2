@@ -9,6 +9,7 @@ include_once ROOT.'/app/templates/menu.php';
       <h1 id="homeHeading">Bienvenue <?= @$_SESSION['nom_demandeur']; ?> </h1>
       <hr>
       <p>FREDI - SITE DE GESTION DE VOS NOTES DE FRAIS</p>
+
     </div>
   </div>
 </header>
