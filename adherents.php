@@ -18,6 +18,7 @@ include_once ROOT.'/app/templates/menu.php';
 
 
 <?php
+@Adherents;
 echo ('<table border="2">
         <tr>
             <th>Numéro de license de l adhérent</th>
@@ -28,19 +29,29 @@ echo ('<table border="2">
             <th>Supprimer</th>
         </tr>');
 
-foreach ($Adherents as $adherent) 
+if(isset($Adherents))
 {
+
+
+  foreach ($Adherents as $adherent) 
+  {
+
+
+
     echo('<tr>
             <td>'.$adherent->get_numlicense_adherent().'</td>
             <td>'.$adherent->get_nom_ad().'</td>
             <td>'.$adherent->get_prenom_ad(). '</td>
             <td>' .$adherent->get_date_naissance_ad().'</td>   
 
-            <td><a href="modifierAdherent.php?id='.$adherent->get_numlicense_adherent().'"><img src="/PPE_3_V2/ico/pencil.png" alt="img"></a></td>
-			<td><a href="supprimerAdherent.php?id='.$adherent->get_numlicense_adherent().'"><img src="/PPE_3_V2/ico/delete.png" alt="img"></a></td>
+            <td><a href="modifierAdherent.php?id='.$adherent->get_numlicense_adherent().'"><center><img src="/PPE_3_V2/ico/pencil.png" alt="img"></center></a></td>
+      <td><a href="supprimerAdherent.php?id='.$adherent->get_numlicense_adherent().'"><center><img src="/PPE_3_V2/ico/delete.png" alt="img"></center></a></td>
 
         </tr>');
+  }
+  
 }
+
 echo '</table>';
 
 ?>

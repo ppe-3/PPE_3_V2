@@ -14,10 +14,14 @@ include_once ROOT.'/app/templates/menu.php';
       <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <center>
           <h1>Ajouter un adhérent mineur</h1>
-            Numéro de license de l'adhérent<br /><input type="text" required name="numlicense_adherent"/><br />
+            Numéro licence<br /><input type="text" required name="numlicense_adherent"/><br />
             Nom <br /><input type="text" required name="nom_ad"/><br />
             Prenom <br /><input type="text" required name="prenom_ad"/><br />
-            Mineur <br /><input type="text" required name="mineur"/><br />
+            Mineur <br />
+
+            Oui <input type="radio" name="mineur" checked value="1" > <br />
+            Non <input type="radio" name="mineur" value="0" > <br />
+
             Date naissance <br /><input type="date" required name="date_naissance_ad"/><br />
             <input type="submit" name="submit" value="Ajouter"><br />
             <input type="reset" value="Annuler"><br />

@@ -82,11 +82,12 @@ class AdherentDAO {
     } catch (PDOException $e) {
       throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
     }
-     $adherent = array() ;
+     $tableau = array() ;
       foreach ($rows as $row) {
         $adherent = new Adherent($row);
 
         $tableau[] = $adherent;
+
     }
 
     return $tableau;    // Retourne un tableau d'objets
