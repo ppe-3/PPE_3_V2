@@ -54,7 +54,7 @@ if($submit)
             $_SESSION['mail_demandeur'] = $demandeur->get_mail_demandeur();
             $_SESSION['datenaissance_demandeur'] = $demandeur->get_datenaissance_demandeur();
             $_SESSION['sexe_demandeur'] = $demandeur->get_sexe_demandeur();
-            header('Location: ../../index.php');
+            header('Location: index.php?user='.$_SESSION['id']);                //changer de location et ca marche
         }   
     }
 
