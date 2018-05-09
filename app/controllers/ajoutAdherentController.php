@@ -12,7 +12,7 @@ $numlicense_adherent   = isset($_POST['numlicense_adherent']) ? $_POST['numlicen
 $nom_ad     = isset($_POST['nom_ad']) ? $_POST['nom_ad'] : '';
 $prenom_ad             = isset($_POST['prenom_ad']) ? $_POST['prenom_ad'] : '';
 $date_naissance_ad       = isset($_POST['date_naissance_ad']) ? $_POST['date_naissance_ad'] : '';
-$mineur       = isset($_POST['mineur']) ? $_POST['mineur'] : '';
+$mineur       = 1;
 $submit     = isset($_POST['submit']) ? $_POST['submit'] : '';
 
 

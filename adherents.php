@@ -19,22 +19,28 @@ include_once ROOT.'/app/templates/menu.php';
 
 <?php
 @Adherents;
-echo ('<table border="2">
-        <tr>
+
+
+if(isset($Adherents))
+{
+
+  if($Adherents == null)
+  {
+    echo('<p>Aucun adhérent actuellement, veillez en ajouter</p> </br>');
+  }
+
+  foreach ($Adherents as $adherent) 
+  {
+    echo ('<table border="2">
+      <tr>
             <th>Numéro de license de l adhérent</th>
             <th>Nom</th>
             <th>Prenom</th>
             <th>Date de naissance</th>
             <th>Modifier</th>
             <th>Supprimer </th>
-        </tr>');
+      </tr>');
 
-if(isset($Adherents))
-{
-
-
-  foreach ($Adherents as $adherent) 
-  {
     echo('<tr>
             <td>'.$adherent->get_numlicense_adherent().'</td>
             <td>'.$adherent->get_nom_ad().'</td>
@@ -45,14 +51,14 @@ if(isset($Adherents))
       <td><a href="supprimerAdherent.php?id='.$adherent->get_numlicense_adherent().'"><center><img src="/PPE_3_V2/ico/delete.png" alt="img"></center></a></td>
 
         </tr>');
+
   }
 
 
-  
+
 }
-else{
-    echo('<p>Aucun adhérent actuellement, veillez en ajouter</p> </br>');
-    }
+
+
 
 echo '</table>';
 
