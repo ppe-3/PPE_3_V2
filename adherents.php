@@ -26,7 +26,7 @@ echo ('<table border="2">
             <th>Prenom</th>
             <th>Date de naissance</th>
             <th>Modifier</th>
-            <th>Supprimer</th>
+            <th>Supprimer </th>
         </tr>');
 
 if(isset($Adherents))
