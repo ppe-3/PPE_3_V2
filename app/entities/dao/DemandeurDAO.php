@@ -89,6 +89,28 @@ class DemandeurDAO {
     return $demandeur; // Retourne l'objet métier
   }
 
+    function findByID($id_demandeur) {
+    $sql = "select * from demandeur where id_demandeur = :id_demandeur";
+    try {
+      $sth = self::get_connexion()->prepare($sql);
+      $sth->execute(array(":id_demandeur" => $_SESSION['id']));
+      $row = $sth->fetch(PDO::FETCH_ASSOC);
+
+    } catch (PDOException $e) {
+      throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+    } 
+    if(!$row)
+    {
+      $demandeur = new Demandeur();
+    }
+    else
+    {
+      $demandeur = new Demandeur($row);  
+    }
+    return $demandeur; // Retourne l'objet métier
+  }
+
+
   function findAll() {
     $sql = "select * from demandeur";
     try {

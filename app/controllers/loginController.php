@@ -17,6 +17,7 @@ if($submit)
             echo('Mot de passe incorect');
            $message = "user non authentifié";
            $token = null;
+           return;
          
       }
       else
