@@ -57,11 +57,7 @@ if(isset($Adherents))
 
   }
 
-
-
 }
-
-
 
 echo '</table>';
 
@@ -73,9 +69,7 @@ echo '</table>';
 
       </div>
 
-    </header>
-
-          
+    </header>  
 
 </html>
 
