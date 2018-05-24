@@ -29,9 +29,8 @@ if(isset($Adherents))
     echo('<p>Aucun adhérent actuellement, veillez en ajouter</p> </br>');
   }
 
-  foreach ($Adherents as $adherent) 
-  {
-    echo ('<table border="2">
+  //Affichage de la structure du tableau
+  echo ('<table border="2">
       <tr>
             <th>Numéro de license de l adhérent</th>
             <th>Nom</th>
@@ -41,6 +40,10 @@ if(isset($Adherents))
             <th>Supprimer </th>
       </tr>');
 
+  foreach ($Adherents as $adherent) 
+  {
+
+    //remplissage du tableau avec les données de l'adherent
     echo('<tr>
             <td>'.$adherent->get_numlicense_adherent().'</td>
             <td>'.$adherent->get_nom_ad().'</td>
