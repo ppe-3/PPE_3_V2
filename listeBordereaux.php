@@ -32,10 +32,8 @@ include_once ROOT.'/app/templates/menu.php';
 			
 
 				<?php if($etat == 0){   		
-					echo('</br> <p>Clicker sur  <a href="ajoutBordereau.php?id='.$_SESSION['id'].'">ajouter</a> pour créer un bordereau pour cette année');
+					echo('</br> <p>Cliquez sur <a href="ajoutBordereau.php?id='.$_SESSION['id'].'">ajouter</a> pour créer un bordereau pour cette année');
                       } ?>
-
-
 
     </div>
   </div>
